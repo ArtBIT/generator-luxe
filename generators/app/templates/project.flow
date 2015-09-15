@@ -1,0 +1,35 @@
+{
+  luxe:{
+    window: {
+      width:<%= app_width %>,
+      height:<%= app_height %>,
+      title:'<%= app_title %>',
+      fullscreen: <%= fullscreen %>,
+      resizable: <%= resizable %>,
+      borderless: <%= borderless %>
+    }
+  },
+
+  project : {
+    name : '<%= app_name %>',
+    version : '1.0.0',
+    author : '<%= author_name %>',
+
+    app : {
+      name : '<%= app_name %>',
+      package : '<%= package %>'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+      }
+    },
+
+    files : {
+      assets : 'assets/'
+    }
+
+  }
+
+}
