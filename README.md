@@ -1,6 +1,6 @@
-# generator-luxe [![Build Status](https://secure.travis-ci.org/artbit/generator-luxe.png?branch=master)](https://travis-ci.org/artbit/generator-luxe)
+# generator-luxe 
 
-> [Yeoman](http://yeoman.io) generator
+> [Yeoman](http://yeoman.io) generator for [snõwkit](http://snowkit.org/) [luxe](http://luxeengine.com/) game engine.
 
 
 ## Getting Started
