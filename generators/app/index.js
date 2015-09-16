@@ -22,7 +22,7 @@ module.exports = yeoman.generators.Base.extend({
             message: 'What is your app\'s name ?',
             default: 'MyGame'
         }, {
-            name: 'package_name',
+            name: 'package',
             message: 'What is your package name ( i.e. com.myname.mygame ) ?',
         }, {
             name: 'app_width',
