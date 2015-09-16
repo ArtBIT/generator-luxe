@@ -64,6 +64,7 @@ module.exports = yeoman.generators.Base.extend({
 
     writing: {
         app: function () {
+            var done = this.async();
             var context = {
                 app_width: this.props.app_width,
                 app_height: this.props.app_height,
@@ -92,10 +93,15 @@ module.exports = yeoman.generators.Base.extend({
                 this.templatePath('src/Main.hx'), 
                 this.destinationPath('src/Main.hx'),
                 context
-            ).on('end', function() {
+            );
+
+            // yeah timeout is ugly
+            setTimeout(function() {
+                // these two templates depend on Main.hx
                 this.composeWith('luxe:state', {args: ['splash'], options: {splash:true, cursor:this.props.show_mouse_cursor}});
                 this.composeWith('luxe:state', {args: ['play']});
-            }.bind(this));
+                done();
+            }.bind(this), 100);
         }
     }
 });

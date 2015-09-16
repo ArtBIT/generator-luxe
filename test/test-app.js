@@ -44,7 +44,7 @@ describe('luxe:app', function () {
 });
 
 describe('luxe:state test', function () {
-  beforeEach(function (done) {
+  before(function (done) {
     helpers.run(path.join(__dirname, '../generators/state'))
       .inDir(path.join(__dirname, './tmp')) // generate the generator files in the tmp directory
       .withArguments(['test'])
@@ -68,7 +68,7 @@ describe('luxe:state test', function () {
 });
 
 describe('luxe:state test --splash', function () {
-  beforeEach(function (done) {
+  before(function (done) {
     helpers.run(path.join(__dirname, '../generators/state'))
       .inDir(path.join(__dirname, './tmp')) // generate the generator files in the tmp directory
       .withArguments(['test'])
@@ -98,7 +98,7 @@ describe('luxe:state test --splash', function () {
 });
 
 describe('luxe:entity', function () {
-  beforeEach(function (done) {
+  before(function (done) {
     helpers.run(path.join(__dirname, '../generators/entity'))
       .inDir(path.join(__dirname, './tmp')) // generate the generator files in the tmp directory
       .withArguments(['test'])
@@ -122,7 +122,7 @@ describe('luxe:entity', function () {
 });
 
 describe('luxe:component', function () {
-  beforeEach(function (done) {
+  before(function (done) {
     helpers.run(path.join(__dirname, '../generators/component'))
       .inDir(path.join(__dirname, './tmp')) // generate the generator files in the tmp directory
       .withArguments(['test'])

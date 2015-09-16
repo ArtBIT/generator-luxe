@@ -2,8 +2,8 @@
 var yeoman = require('yeoman-generator');
 var mkdirp = require('mkdirp');
 var wiring = require("html-wiring");
-var fs = require('fs');
 var _ = require('lodash');
+var fs = require('fs');
 
 module.exports = yeoman.generators.Base.extend({
     constructor: function () {
@@ -15,7 +15,6 @@ module.exports = yeoman.generators.Base.extend({
     },
     writing: {
         states: function () {
-
             var context = {
                 state_name: this.state_name,
                 class_name: this.class_name,
@@ -32,33 +31,35 @@ module.exports = yeoman.generators.Base.extend({
                 this.destinationPath('src/states/' + this.class_name + '.hx'),
                 context
             );
-            // update Main.hx
-            // add the `import states.StateName;` line
-            var mainhx = wiring.readFileAsString(this.destinationPath('src/Main.hx'));
-            var line = "\n" + 'import states.' + this.class_name + ';';
-            var comment = '// yeoman: import states';
-            var pos = mainhx.indexOf(line);
-            // only add the import line if it's not already added
-            if (pos == -1) {
-                pos = mainhx.indexOf(comment);
-                if (pos != -1) {
-                    pos += comment.length;
-                    mainhx = mainhx.substr(0, pos) + line + mainhx.substr(pos);
+            if (fs.existsSync(this.destinationPath('src/Main.hx'))) {
+                // update Main.hx
+                // add the `import states.StateName;` line
+                var mainhx = wiring.readFileAsString(this.destinationPath('src/Main.hx'));
+                var line = "\n" + 'import states.' + this.class_name + ';';
+                var comment = '// yeoman: import states';
+                var pos = mainhx.indexOf(line);
+                // only add the import line if it's not already added
+                if (pos == -1) {
+                    pos = mainhx.indexOf(comment);
+                    if (pos != -1) {
+                        pos += comment.length;
+                        mainhx = mainhx.substr(0, pos) + line + mainhx.substr(pos);
+                    }
                 }
-            }
-            // add the `state.add(new StateName({name:statename}));` line
-            comment = '// yeoman: add states';
-            line = "\n" + '        state.add(new ' + this.class_name + '({name: \'' + this.state_name + '\'}));';
-            pos = mainhx.indexOf(line);
-            if (pos == -1) {
-                pos = mainhx.indexOf(comment);
-                if (pos != -1) {
-                    pos += comment.length;
-                    mainhx = mainhx.substr(0, pos) + line + mainhx.substr(pos);
+                // add the `state.add(new StateName({name:statename}));` line
+                comment = '// yeoman: add states';
+                line = "\n" + '        state.add(new ' + this.class_name + '({name: \'' + this.state_name + '\'}));';
+                pos = mainhx.indexOf(line);
+                if (pos == -1) {
+                    pos = mainhx.indexOf(comment);
+                    if (pos != -1) {
+                        pos += comment.length;
+                        mainhx = mainhx.substr(0, pos) + line + mainhx.substr(pos);
+                    }
                 }
+                // write the updated contents
+                fs.writeFileSync(this.destinationPath('src/Main.hx'), mainhx);
             }
-            // write the updated contents
-            fs.writeFile(this.destinationPath('src/Main.hx'), mainhx);
 
         }
     }
