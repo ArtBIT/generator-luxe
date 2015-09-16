@@ -1,6 +1,6 @@
 {
   "name": "generator-luxe",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "Yeoman generator for snõwkit luxe game engine",
   "license": "MIT",
   "main": "app/index.js",
@@ -17,6 +17,8 @@
     "generators"
   ],
   "keywords": [
+    "yeoman",
+    "generator",
     "yeoman-generator",
     "haxe",
     "snowkit",

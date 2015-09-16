@@ -43,8 +43,9 @@ $ yo luxe:state <name>
 ```
 This will generate a new state in `src/states`
 
-## 
+# Credit
 Thanks to Juno Nguyen for the [state based luxe template](https://github.com/JunoNgx/luxeTpl)
+
 ## License
 
 MIT
