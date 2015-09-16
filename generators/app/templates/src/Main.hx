@@ -6,6 +6,8 @@ import luxe.Sprite;
 import luxe.Color;
 import luxe.Vector;
 import luxe.States;
+
+// yeoman: import states
 import states.Play;
 import states.Splash;
 
@@ -38,8 +40,9 @@ class Main extends luxe.Game {
 
         // Create a state machine
         state = new States( { name: "states" } );
-        state.add (new Play({name: 'play'}));
-        state.add (new Splash({name: 'splash'}));
+        // yeoman: add states
+        state.add(new Play({name: 'play'}));
+        state.add(new Splash({name: 'splash'}));
         state.set('splash');
     }
 
