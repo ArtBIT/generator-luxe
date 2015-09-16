@@ -3,45 +3,48 @@
 > [Yeoman](http://yeoman.io) generator for [snõwkit](http://snowkit.org/) [luxe](http://luxeengine.com/) game engine.
 
 
-## Getting Started
-
-### What is Yeoman?
-
-Trick question. It's not a thing. It's this guy:
-
-![](http://i.imgur.com/JHaAlBJ.png)
-
-Basically, he wears a top hat, lives in your computer, and waits for you to tell him what kind of application you wish to create.
-
-Not every new computer comes with a Yeoman pre-installed. He lives in the [npm](https://npmjs.org) package repository. You only have to ask for him once, then he packs up and moves into your hard drive. *Make sure you clean up, he likes new and shiny things.*
-
+# Installation
 ```bash
-npm install -g yo
+$ npm install -g yo
+$ npm install -g generator-luxe
 ```
 
-### Yeoman Generators
-
-Yeoman travels light. He didn't pack any generators when he moved in. You can think of a generator like a plug-in. You get to choose what type of application you wish to create, such as a Backbone application or even a Chrome extension.
-
-To install generator-luxe from npm, run:
-
+# Usage
 ```bash
-npm install -g generator-luxe
+$ mkdir mygame && cd $_
+$ yo luxe 
+```
+This will generate a new project
+
+## Project structure
+```bash
+assets/
+|  luxe_logo.png
+src/
+|  Main.hx
+project.flow
 ```
 
-Finally, initiate the generator:
-
+## Generate a new component
 ```bash
-yo luxe
+$ yo luxe:component <name>
 ```
+This will generate a new component in `src/components`
 
-### Getting To Know Yeoman
+## Generate a new entity
+```bash
+$ yo luxe:entity <name>
+```
+This will generate a new entity in `src/entities`
 
-Yeoman has a heart of gold. He's a person with feelings and opinions, but he's very easy to work with. If you think he's too opinionated, he can be easily convinced.
+## Generate a new state
+```bash
+$ yo luxe:state <name>
+```
+This will generate a new state in `src/states`
 
-If you'd like to get to know Yeoman better and meet some of his friends, [Grunt](http://gruntjs.com) and [Bower](http://bower.io), check out the complete [Getting Started Guide](https://github.com/yeoman/yeoman/wiki/Getting-Started).
-
-
+## 
+Thanks to Juno Nguyen for the [state based luxe template](https://github.com/JunoNgx/luxeTpl)
 ## License
 
 MIT

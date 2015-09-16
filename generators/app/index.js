@@ -19,13 +19,11 @@ module.exports = yeoman.generators.Base.extend({
             store: true
         }, {
             name: 'app_name',
-            message: 'What is your app\'s name ?'
+            message: 'What is your app\'s name ?',
+            default: 'MyGame'
         }, {
             name: 'package_name',
-            message: 'What is your package name (used for class package) ?'
-        }, {
-            name: 'app_title',
-            message: 'What is your app\'s title (Shown as window title) ?'
+            message: 'What is your package name ( i.e. com.myname.mygame ) ?',
         }, {
             name: 'app_width',
             message: 'What is your app\'s width ?',
@@ -49,6 +47,11 @@ module.exports = yeoman.generators.Base.extend({
             name: 'borderless',
             message: 'Borderless application ?',
             default: false
+        }, {
+            type: 'confirm',
+            name: 'show_mouse_cursor',
+            message: 'Show mouse cursor ?',
+            default: true
         }];
 
         this.prompt(prompts, function (props) {
@@ -64,12 +67,12 @@ module.exports = yeoman.generators.Base.extend({
             var context = {
                 app_width: this.props.app_width,
                 app_height: this.props.app_height,
-                app_title: this.props.app_title,
                 fullscreen: this.props.fullscreen,
                 resizable: this.props.resizable,
                 borderless: this.props.borderless,
                 app_name: this.props.app_name,
                 author_name: this.props.author_name,
+                show_mouse_cursor: this.props.show_mouse_cursor,
                 package: this.props.package 
             };
             this.template(
@@ -90,6 +93,9 @@ module.exports = yeoman.generators.Base.extend({
                 this.destinationPath('src/Main.hx'),
                 context
             );
+
+            this.composeWith('luxe:state', {args: ['splash'], options: {splash:true, cursor:this.props.show_mouse_cursor}});
+            this.composeWith('luxe:state', {args: ['play']});
         }
     }
 });

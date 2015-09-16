@@ -1,27 +1,46 @@
+package;
+
+import luxe.Screen.WindowEvent;
 import luxe.Input;
 import luxe.Sprite;
 import luxe.Color;
 import luxe.Vector;
+import luxe.States;
+import states.Play;
+import states.Splash;
 
 class Main extends luxe.Game {
-    var logo: Sprite;
+
+    var showCursor: Bool = <%= show_mouse_cursor %>;
+
+    public static var state: States;
 
     override function config(config:luxe.AppConfig) {
+
         config.preload.textures.push({ id:'assets/luxe_logo.png' });
         return config;
 
     }
 
-    //called by luxe for you when you can start coding
+    // Scale camera's viewport  when the game is scaled
+    override function onwindowsized( e:WindowEvent ) {
+
+        Luxe.camera.viewport = new luxe.Rectangle( 0, 0, e.event.x, e.event.y);
+
+    }
+
+    //called by luxe for you when the resources are loaded and the app
+    //is ready
     override function ready() {
-        var logo_image = Luxe.resources.texture('assets/luxe_logo.png');
-        logo = new Sprite({
-            name: 'luxe logo',
-            pos: Luxe.screen.mid,
-            color: new Color().rgb(0xf94b04),
-            texture: logo_image,
-            size: new Vector(128, 128)
-        });
+
+        // Show/hide cursor
+        Luxe.screen.cursor.visible = showCursor;
+
+        // Create a state machine
+        state = new States( { name: "states" } );
+        state.add (new Play({name: 'play'}));
+        state.add (new Splash({name: 'splash'}));
+        state.set('splash');
     }
 
     //called by luxe for you, when a key is released

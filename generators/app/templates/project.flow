@@ -3,7 +3,7 @@
     window: {
       width:<%= app_width %>,
       height:<%= app_height %>,
-      title:'<%= app_title %>',
+      title:'<%= app_name %>',
       fullscreen: <%= fullscreen %>,
       resizable: <%= resizable %>,
       borderless: <%= borderless %>
