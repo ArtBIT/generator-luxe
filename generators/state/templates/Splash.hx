@@ -17,7 +17,7 @@ class <%= class_name %> extends State {
 
     // called when entering current state
     override public function onenter<T> (_:T) {
-        #if DEBUG
+        #if debug
             trace('Entered state <%= class_name %>');
         #end
 
