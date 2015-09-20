@@ -1,4 +1,4 @@
-package <%= package %>;
+package states;
 
 import luxe.Sprite;
 import luxe.Input;
@@ -6,9 +6,11 @@ import luxe.States;
 import luxe.Color;
 import luxe.Vector;
 import luxe.Camera;
+import phoenix.Shader;
 
-class <%= class_name %> extends State {
+class Splash extends State {
     var logo: Sprite;
+    var hue_shader: Shader;
 
     //called every frame for you
     override function update(dt:Float) {
@@ -18,7 +20,7 @@ class <%= class_name %> extends State {
     // called when entering current state
     override public function onenter<T> (_:T) {
         #if debug
-            trace('Entered state <%= class_name %>');
+            trace('Entered state Splash');
         #end
 
         // create logo sprite
@@ -31,6 +33,9 @@ class <%= class_name %> extends State {
             size: new Vector(128, 128)
         });
 
+        hue_shader = Luxe.resources.shader('hue');
+        logo.shader = hue_shader;
+
         // fade-in the logo after 1s
         Luxe.timer.schedule(1, fadein);
     }
@@ -40,14 +45,25 @@ class <%= class_name %> extends State {
         logo.destroy();
     }
 
+    override function onmousemove( e:MouseEvent ) {
+        var percent = e.pos.x / Luxe.screen.w;
+        var hue = (Math.PI*2) * percent;
+        //hue based on mouse x
+        hue_shader.set_float('in_hue', hue);
+    }
+
     function fadein() {
-        logo.color.tween(1, { a: 1 } );
+        logo.color.tween(1, { a: 1 } ).onUpdate(updatealpha);
         Luxe.timer.schedule(1 + 3, fadeout);
     }
 
     function fadeout() {
-        logo.color.tween(1, { a: 0 } );
+        logo.color.tween(1, { a: 0 } ).onUpdate(updatealpha);
         Luxe.timer.schedule(1, switchstate);
+    }
+
+    function updatealpha() {
+        hue_shader.set_float('in_alpha', logo.color.a);
     }
 
     function switchstate() {

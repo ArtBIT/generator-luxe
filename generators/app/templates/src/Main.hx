@@ -20,6 +20,7 @@ class Main extends luxe.Game {
     override function config(config:luxe.AppConfig) {
 
         config.preload.textures.push({ id:'assets/luxe_logo.png' });
+        config.preload.shaders.push({ id:'hue', frag_id:'assets/huechange.glsl', vert_id:'default' });
         return config;
 
     }

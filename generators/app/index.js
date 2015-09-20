@@ -76,24 +76,25 @@ module.exports = yeoman.generators.Base.extend({
                 show_mouse_cursor: this.props.show_mouse_cursor,
                 package: this.props.package 
             };
-            this.template(
-                this.templatePath('project.flow'), 
-                this.destinationPath('project.flow'),
-                context
-            );
+
+            var templates = ['project.flow', 'src/Main.hx'];
+            for (var i in templates) {
+                this.template(
+                    this.templatePath(templates[i]), 
+                    this.destinationPath(templates[i]),
+                    context
+                );
+            }
 
             mkdirp('assets');
-            this.fs.copy(
-                this.templatePath('assets/luxe_logo.png'), 
-                this.destinationPath('assets/luxe_logo.png')
-            );
-
             mkdirp('src');
-            this.template(
-                this.templatePath('src/Main.hx'), 
-                this.destinationPath('src/Main.hx'),
-                context
-            );
+            var files = ['assets/luxe_logo.png', 'assets/huechange.glsl'];
+            for (var i in files) {
+                this.fs.copy(
+                    this.templatePath(files[i]),
+                    this.destinationPath(files[i])
+                );
+            }
 
             // yeah timeout is ugly
             setTimeout(function() {
