@@ -37,6 +37,7 @@ describe('luxe:app', function () {
         fs.unlinkSync('project.flow');
         fs.unlinkSync('src/Main.hx');
         fs.rmdirSync('src');
+        fs.unlinkSync('assets/huechange.glsl');
         fs.unlinkSync('assets/luxe_logo.png');
         fs.rmdirSync('assets');
   });

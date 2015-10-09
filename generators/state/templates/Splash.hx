@@ -8,7 +8,7 @@ import luxe.Vector;
 import luxe.Camera;
 import phoenix.Shader;
 
-class Splash extends State {
+class <%= class_name %> extends State {
     var logo: Sprite;
     var hue_shader: Shader;
 
