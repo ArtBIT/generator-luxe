@@ -1,5 +1,8 @@
 language: node_js
 node_js:
   - "0.8"
-before_install: npm install -g mocha
+before_install:
+  npm install -g npm@'>=1.4.3'
+  npm install -g mocha
 script: mocha tests
+sudo: false
