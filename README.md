@@ -1,4 +1,5 @@
 # generator-luxe 
+[![Build Status](https://travis-ci.org/ArtBIT/generator-luxe.svg)](https://travis-ci.org/ArtBIT/generator-luxe)
 
 > [Yeoman](http://yeoman.io) generator for [snõwkit](http://snowkit.org/) [luxe](http://luxeengine.com/) game engine.
 
