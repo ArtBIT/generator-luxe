@@ -26,8 +26,8 @@
     "luxe"
   ],
   "dependencies": {
-    "yeoman-generator": "0.20.x",
-    "chalk": "1.1.x",
+    "yeoman-generator": "0.19.x",
+    "chalk": "1.0.x",
     "yosay": "1.0.x",
     "lodash": "*",
     "mkdirp": "*",
