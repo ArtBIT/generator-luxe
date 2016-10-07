@@ -11,7 +11,7 @@ module.exports = yeoman.generators.Base.extend({
 
         this.argument('state_name', { type: String, required: true });
         // CamelCase it
-        this.class_name = _.capitalize(_.camelCase(this.state_name));
+        this.class_name = _.upperFirst(_.camelCase(this.state_name));
     },
     writing: {
         states: function () {

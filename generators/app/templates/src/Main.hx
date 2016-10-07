@@ -1,5 +1,6 @@
 package;
 
+import luxe.GameConfig;
 import luxe.Screen.WindowEvent;
 import luxe.Input;
 import luxe.Sprite;
@@ -17,7 +18,7 @@ class Main extends luxe.Game {
 
     public static var state: States;
 
-    override function config(config:luxe.AppConfig) {
+    override function config(config:GameConfig) {
 
         config.preload.textures.push({ id:'assets/luxe_logo.png' });
         config.preload.shaders.push({ id:'hue', frag_id:'assets/huechange.glsl', vert_id:'default' });
@@ -28,7 +29,7 @@ class Main extends luxe.Game {
     // Scale camera's viewport  when the game is scaled
     override function onwindowsized( e:WindowEvent ) {
 
-        Luxe.camera.viewport = new luxe.Rectangle( 0, 0, e.event.x, e.event.y);
+        Luxe.camera.viewport = new luxe.Rectangle( 0, 0, e.x, e.y);
 
     }
 
@@ -37,7 +38,7 @@ class Main extends luxe.Game {
     override function ready() {
 
         // Show/hide cursor
-        Luxe.screen.cursor.visible = showCursor;
+        Luxe.screen.cursor.grab = showCursor;
 
         // Create a state machine
         state = new States( { name: "states" } );
@@ -63,4 +64,3 @@ class Main extends luxe.Game {
     }
 
 }
-

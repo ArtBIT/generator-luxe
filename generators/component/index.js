@@ -9,7 +9,7 @@ module.exports = yeoman.generators.Base.extend({
 
         this.argument('component_name', { type: String, required: true });
         // CamelCase it
-        this.class_name = _.capitalize(_.camelCase(this.component_name));
+        this.class_name = _.upperFirst(_.camelCase(this.component_name));
     },
     writing: {
         component: function () {
